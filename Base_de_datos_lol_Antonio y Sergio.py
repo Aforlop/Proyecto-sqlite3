@@ -74,3 +74,50 @@ def eliminar_personaje(id_personaje):
     conexion.commit()
     conexion.close()
 
+def menu():
+    crear_tablas()
+    continuar = True
+    while continuar:
+        print("\nMenú:")
+        print("1. Agregar Región")
+        print("2. Agregar Línea")
+        print("3. Agregar Personaje")
+        print("4. Listar Personajes")
+        print("5. Actualizar Personaje")
+        print("6. Eliminar Personaje")
+        print("7. Salir")
+        opcion = input("Seleccione una opción: ")
+        
+        if opcion == "1":
+            nombre = input("Nombre de la región: ")
+            insertar_region(nombre)
+        elif opcion == "2":
+            nombre = input("Nombre de la línea: ")
+            insertar_linea(nombre)
+        elif opcion == "3":
+            nombre = input("Nombre del personaje: ")
+            anyo = int(input("Año de salida: "))
+            poder = input("Fuente de poder: ")
+            id_region = int(input("ID de la región: "))
+            id_linea = int(input("ID de la línea: "))
+            insertar_personaje(nombre, anyo, poder, id_region, id_linea)
+        elif opcion == "4":
+            listar_personajes()
+        elif opcion == "5":
+            id_p = int(input("ID del personaje a actualizar: "))
+            nombre = input("Nuevo nombre: ")
+            anyo = int(input("Nuevo año de salida: "))
+            poder = input("Nueva fuente de poder: ")
+            id_region = int(input("Nuevo ID de región: "))
+            id_linea = int(input("Nuevo ID de línea: "))
+            actualizar_personaje(id_p, nombre, anyo, poder, id_region, id_linea)
+        elif opcion == "6":
+            id_p = int(input("ID del personaje a eliminar: "))
+            eliminar_personaje(id_p)
+        elif opcion == "7":
+            continuar = False
+        else:
+            print("Opción no válida.")
+
+if __name__ == "__main__":
+    menu()
